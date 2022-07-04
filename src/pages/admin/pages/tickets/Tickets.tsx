@@ -3,19 +3,16 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 type OrdersProps = {
-  orderId: 1;
-  userId: UserProps;
-  theatreId: 1;
-  [movieId: string]: any;
-  orderDate: Object;
-  showDate: Object;
-  showTime: String;
+  orderId: number;
+  userId: any;
+  theatreId: any;
+  movieId: any;
+  orderDate: Date;
+  showDate: string;
+  showTime: string;
   seats: [];
-  orderTotal: Number;
-  paymentMethod: String;
-};
-type UserProps = {
-  name: String;
+  orderTotal: number;
+  paymentMethod: string;
 };
 
 const Tickets = () => {
@@ -52,7 +49,7 @@ const Tickets = () => {
         {orders.map((order) => (
           <tr className='widgetLgTr'>
             <td className='widgetLgUser'>
-              <span className='widgetLgName'>{order.userId.name}</span>
+              <span className='widgetLgName'>{order.userId?.name}</span>
             </td>
             <td className='widgetLgName'>
               <img src={order.movieId.image} alt='' className='widgetLgImg' />
@@ -73,7 +70,7 @@ const Tickets = () => {
                 ))}{' '}
               </>
             </td>
-            <td className='widgetLgDate'>{order.theatreId}</td>
+            <td className='widgetLgDate'>{order.theatreId.name}</td>
           </tr>
         ))}
       </table>
