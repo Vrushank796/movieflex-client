@@ -39,7 +39,7 @@ const Navigation = (props: NavProps) => {
         <span className='navbar-toggler-icon navbar-dark'></span>
       </button>
       <div className='collapse navbar-collapse main-nav' id='navbarNavDropdown'>
-        {auth.isLoggedIn == false ? (
+        {auth.isLoggedIn === false ? (
           <ul className='main-nav navbar-nav'>
             <li className='nav-item'>
               <NavLink to='/'>Home</NavLink>
@@ -61,7 +61,7 @@ const Navigation = (props: NavProps) => {
             </li>
           </ul>
         )}
-        {auth.isLoggedIn == false ? (
+        {auth.isLoggedIn === false ? (
           <ul className='navbar-nav ml-auto'>
             <li className='nav-item nav-user-btn'>
               <NavLink to='/login'>

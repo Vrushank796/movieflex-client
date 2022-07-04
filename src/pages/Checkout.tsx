@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Form, Button, CloseButton, Modal, ModalHeader } from 'react-bootstrap';
+import { Form, Button, Modal } from 'react-bootstrap';
 import '../assets/stylesheets/Checkout.css';
 import decode from 'jwt-decode';
 
@@ -48,7 +47,7 @@ type MovieBookingStatusProps = {
 const Checkout = () => {
   //const server_url = 'http://localhost:4000'; //development
   const server_url = process.env.REACT_APP_API_URI; //production
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { state } = useLocation();
   const { movieId, showtimeId, showSelectionDetails, seats }: any = state;
   const [movieData, setMovieData] = useState<MovieDataProps>();
@@ -79,7 +78,7 @@ const Checkout = () => {
       }
     };
     fetchMovieTheatreData();
-  }, [movieId]);
+  }, [showSelectionDetails.location, server_url, movieId]);
 
   const months = [
     'January',
@@ -178,7 +177,7 @@ const Checkout = () => {
               <span className='locationName font-weight-bold'>
                 <>
                   {seats.map((seat: any, idx: any) => (
-                    <>{idx == seats.length - 1 ? seat : seat + ', '}</>
+                    <>{idx === seats.length - 1 ? seat : seat + ', '}</>
                   ))}{' '}
                 </>
               </span>
@@ -248,12 +247,10 @@ const PaymentFormModal = (props: PaymentModalPropTypes) => {
     e: React.FormEvent<HTMLFormElement>
   ) => {
     e.preventDefault();
-    {
-      props.submitorderdetails();
-    }
-    {
-      props.showack();
-    }
+
+    props.submitorderdetails();
+
+    props.showack();
   };
   return (
     <Modal

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router';
 import '../assets/stylesheets/Login.css';
 import { Form, Button } from 'react-bootstrap';
@@ -53,12 +53,12 @@ const Login = () => {
           },
         }
       );
-      if (response.data.isLoggedIn == true) {
+      if (response.data.isLoggedIn === true) {
         auth.login();
         var data: any = decode(response.data.token);
         user.setData(data);
         localStorage.setItem('loginToken', response.data.token);
-        if (data.role == 'admin') {
+        if (data.role === 'admin') {
           navigate('/admin');
         } else {
           navigate('/');

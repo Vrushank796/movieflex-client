@@ -58,10 +58,11 @@ const Footer = () => {
                     MovieFlex is the best website to book the movie tickets in
                     your nearby theatres without any hassle you can select the
                     available movie screening time and it also allows to select
-                    the best available seats. This movie booking website allows 
-                    users to book their favorite movies, tv shows, and web series 
-                    from multiple genres like Crime, Comedy, Drama, Documentaries, 
-                    Horror, Anime, Romance, War, Action, Fantasy, Kids and many more!
+                    the best available seats. This movie booking website allows
+                    users to book their favorite movies, tv shows, and web
+                    series from multiple genres like Crime, Comedy, Drama,
+                    Documentaries, Horror, Anime, Romance, War, Action, Fantasy,
+                    Kids and many more!
                   </p>
                 </div>
               </div>
@@ -70,24 +71,24 @@ const Footer = () => {
 
             {/* <!-- Section: Social --> */}
             <section className='text-center mb-5'>
-              <a href='' className='text-white mx-4'>
+              <span className='text-white mx-4'>
                 <i className='fa-brands fa-facebook-f'></i>
-              </a>
-              <a href='' className='text-white mx-4'>
+              </span>
+              <span className='text-white mx-4'>
                 <i className='fab fa-twitter'></i>
-              </a>
-              <a href='' className='text-white mx-4'>
+              </span>
+              <span className='text-white mx-4'>
                 <i className='fab fa-google'></i>
-              </a>
-              <a href='' className='text-white mx-4'>
+              </span>
+              <span className='text-white mx-4'>
                 <i className='fab fa-instagram'></i>
-              </a>
-              <a href='' className='text-white mx-4'>
+              </span>
+              <span className='text-white mx-4'>
                 <i className='fab fa-linkedin'></i>
-              </a>
-              <a href='' className='text-white mx-4'>
+              </span>
+              <span className='text-white mx-4'>
                 <i className='fab fa-github'></i>
-              </a>
+              </span>
             </section>
             {/* <!-- Section: Social --> */}
           </div>
@@ -99,9 +100,7 @@ const Footer = () => {
             // style=""
           >
             © 2022 Copyright:
-            <a className='footer-links' href=''>
-              Company Name
-            </a>
+            <span className='footer-links'> Company Name</span>
           </div>
           {/* <!-- Copyright --> */}
         </footer>

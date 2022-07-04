@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import '../assets/stylesheets/Homepage.css';
 import CardGrid from '../components/CardGrid';
 

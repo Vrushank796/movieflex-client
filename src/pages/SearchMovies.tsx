@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import '../assets/stylesheets/Search.css';
@@ -48,7 +47,7 @@ const SearchMovies = () => {
       }
     };
     getMovies();
-  }, []);
+  }, [server_url]);
 
   const paginate = (pageNumber: any) => setCurrentPage(pageNumber);
   const lastIndex = currentPage * moviesPerPage;
@@ -114,7 +113,11 @@ const SearchMovies = () => {
                   <NavLink to={`/movie/${movie.id}`}>
                     {/* <th scope='row'>{movie.id}</th> */}
                     <td>
-                      <img className='searchmovieImg' src={movie.image} />
+                      <img
+                        className='searchmovieImg'
+                        src={movie.image}
+                        alt='Movie not found'
+                      />
                     </td>
                   </NavLink>
                   <td className='tableBody'>

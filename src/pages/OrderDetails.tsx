@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
 import axios from 'axios';
-import { NavLink } from 'react-router-dom';
 import '../assets/stylesheets/OrderDetails.css';
-import Pagination from '../components/Pagination';
-import star from '../assets/images/star.png';
 import emptyOrdersImg from '../assets/images/orders.webp';
 import decode from 'jwt-decode';
 
@@ -27,7 +23,7 @@ const SearchMovies = () => {
   const server_url = process.env.REACT_APP_API_URI; //production
   const navigate = useNavigate();
   const [orderDetails, setOrderDetails] = useState<OrderDetailsProps[]>([]);
-  const [movieData, setMovieData] = useState([]);
+  // const [movieData, setMovieData] = useState([]);
   var token: any = localStorage.getItem('loginToken');
   var data: any = decode(token);
 
@@ -45,12 +41,12 @@ const SearchMovies = () => {
       }
     };
     getOrders();
-  }, []);
+  }, [data.id, server_url]);
   return (
     <div className='main-od-container container-fluid'>
       <div className='row od-row'>
         <div className='col-lg'>
-          {orderDetails.length != 0 ? (
+          {orderDetails.length !== 0 ? (
             <div className='od-tableDisplay'>
               <h2 className='order-title'>My Orders</h2>
               <hr />
@@ -86,7 +82,7 @@ const SearchMovies = () => {
                         <>
                           {order.seats.map((data, index) => (
                             <>
-                              {index == order.seats.length - 1
+                              {index === order.seats.length - 1
                                 ? data
                                 : data + ', '}
                             </>

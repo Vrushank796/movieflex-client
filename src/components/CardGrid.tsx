@@ -22,7 +22,7 @@ const CardGrid = (props: CardGridProps) => {
   //const server_url = 'http://localhost:4000'; //development
   const server_url = process.env.REACT_APP_API_URI; //production
   const [movies, setMovies] = useState<MovieProps[]>([]);
-  const [randomMovies, setRandomMovies] = useState<MovieProps[]>([]);
+  // const [randomMovies, setRandomMovies] = useState<MovieProps[]>([]);
 
   useEffect(() => {
     const shuffle = (array: MovieProps[]) => {
@@ -49,7 +49,7 @@ const CardGrid = (props: CardGridProps) => {
       }
     };
     getMovies();
-  }, []);
+  }, [server_url]);
 
   return (
     <div className='container-fluid card-grid'>

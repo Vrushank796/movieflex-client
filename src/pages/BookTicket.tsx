@@ -2,13 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import clsx from 'clsx';
-import { Form, Button, Dropdown } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import '../assets/stylesheets/Movie.css';
 import '../assets/stylesheets/BookTicket.css';
-import star from '../assets/images/star.png';
-import { url } from 'inspector';
 
 type MovieDataProps = {
   _id: string;
@@ -31,13 +29,13 @@ type TheatresDataProps = {
   contact: string;
 };
 
-type MovieInTheatresDataProps = {
-  theatreId: string;
-  movieId: string;
-  showTimes: [];
-  ticketPrices: [];
-  seatsOccupied: [];
-};
+// type MovieInTheatresDataProps = {
+//   theatreId: string;
+//   movieId: string;
+//   showTimes: [];
+//   ticketPrices: [];
+//   seatsOccupied: [];
+// };
 
 type ShowtimeDataProps = {
   showtimeId: string;
@@ -52,13 +50,13 @@ const BookTicket = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [movieData, setMovieData] = useState<MovieDataProps>();
-  const [checked, setChecked] = useState(false);
+  // const [checked, setChecked] = useState(false);
   const [radioValue, setRadioValue] = useState<{ showtimeId: string }>({
     showtimeId: '',
   });
   const [theatreList, setTheatreList] = useState<TheatresDataProps[]>([]);
-  const [movieInTheatre, setMovieInTheatre] =
-    useState<MovieInTheatresDataProps>();
+  // const [movieInTheatre, setMovieInTheatre] =
+  //   useState<MovieInTheatresDataProps>();
   const [showtime, setShowTime] = useState<ShowtimeDataProps[]>([]);
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [occupiedSeats, setOccupiedSeats] = useState([]);
@@ -79,7 +77,7 @@ const BookTicket = () => {
   const movieImg = movieData?.image;
   const movieUrl = `/movie/${id}`;
   const movieName = movieData?.title;
-  const totalSeats = selectedSeats.length;
+  // const totalSeats = selectedSeats.length;
 
   const getMovieSeatsData = {
     movieId: movieData?._id,
@@ -89,16 +87,16 @@ const BookTicket = () => {
 
   const checkMovieOccupiedSeats = async () => {
     if (
-      getMovieSeatsData.movieId != '' &&
-      getMovieSeatsData.theatreId != '' &&
-      getMovieSeatsData.showtimeId != ''
+      getMovieSeatsData.movieId !== '' &&
+      getMovieSeatsData.theatreId !== '' &&
+      getMovieSeatsData.showtimeId !== ''
     ) {
       // const checkMovieSeatsUrl = `http://localhost:4000/checkMovieSeats/${getMovieSeatsData.movieId}/${getMovieSeatsData.theatreId}/${getMovieSeatsData.showtimeId}`; //dev
       const checkMovieSeatsUrl = `${server_url}/checkMovieSeats/${getMovieSeatsData.movieId}/${getMovieSeatsData.theatreId}/${getMovieSeatsData.showtimeId}`; //prod
       console.log(checkMovieSeatsUrl);
       const checkMovieSeats = await axios.get(checkMovieSeatsUrl);
 
-      if (checkMovieSeats.data.length != 0) {
+      if (checkMovieSeats.data.length !== 0) {
         setOccupiedSeats(checkMovieSeats.data[0].seatsOccupied);
         console.log(
           'checkMovieSeats function' + checkMovieSeatsUrl,
@@ -129,7 +127,7 @@ const BookTicket = () => {
 
         setTheatreList(respTheatreList.data);
 
-        setMovieInTheatre(respMovieInTheatre.data);
+        // setMovieInTheatre(respMovieInTheatre.data);
 
         setShowTime(respMovieInTheatre.data.showTimes);
 
@@ -137,8 +135,8 @@ const BookTicket = () => {
         // setOccupiedSeats(respMovieInTheatre.data.seatsOccupied);
         setSelectedSeats([]);
         if (
-          movieBookingForm.location != '' &&
-          movieBookingForm.selectedTime != ''
+          movieBookingForm.location !== '' &&
+          movieBookingForm.selectedTime !== ''
         ) {
           checkMovieOccupiedSeats();
         }
@@ -147,7 +145,12 @@ const BookTicket = () => {
       }
     };
     fetchMovieTheatreData();
-  }, [movieBookingForm.location, movieBookingForm.selectedTime, id]);
+  }, [
+    server_url,
+    movieBookingForm.location,
+    movieBookingForm.selectedTime,
+    id,
+  ]);
 
   console.log(movieBookingForm);
 
@@ -160,7 +163,7 @@ const BookTicket = () => {
     return yyyy + '-' + mm + '-' + dd;
   };
   const disableAfterTwoDate = () => {
-    const today = new Date().toISOString().split('T')[0];
+    // const today = new Date().toISOString().split('T')[0];
     var twoWeek = new Date(new Date().getTime() + 14 * 24 * 60 * 60 * 1000)
       .toISOString()
       .split('T')[0];
@@ -185,10 +188,10 @@ const BookTicket = () => {
     // const bookMovie = { ...movieBookingForm };s
 
     if (
-      movieBookingForm.location != '' &&
-      movieBookingForm.selectedDate != '' &&
-      movieBookingForm.selectedTime != '' &&
-      selectedSeats.length != 0
+      movieBookingForm.location !== '' &&
+      movieBookingForm.selectedDate !== '' &&
+      movieBookingForm.selectedTime !== '' &&
+      selectedSeats.length !== 0
     ) {
       setMovieBookingForm({
         location: '',
@@ -203,13 +206,13 @@ const BookTicket = () => {
           seats: selectedSeats,
         },
       });
-    } else if (movieBookingForm.location == '') {
+    } else if (movieBookingForm.location === '') {
       alert('Please select the theatre location');
-    } else if (movieBookingForm.selectedDate == '') {
+    } else if (movieBookingForm.selectedDate === '') {
       alert('Please select the movie date');
-    } else if (movieBookingForm.selectedTime == '') {
+    } else if (movieBookingForm.selectedTime === '') {
       alert('Please select the movie time');
-    } else if (selectedSeats.length == 0) {
+    } else if (selectedSeats.length === 0) {
       alert('Please select the seats');
     } else {
     }
@@ -298,7 +301,7 @@ const BookTicket = () => {
                       className='radio-showTime'
                       type='radio'
                       variant={
-                        radioValue.showtimeId == radio.showtimeId
+                        radioValue.showtimeId === radio.showtimeId
                           ? 'primary'
                           : 'outline-primary'
                       }
@@ -330,7 +333,7 @@ const BookTicket = () => {
                 />
               </Form.Group>
 
-              {selectedSeats.length != 0 ? (
+              {selectedSeats.length !== 0 ? (
                 <span className='seats-selected'>
                   Seat(s) selected: {''}
                   {selectedSeats.map((seat, idx) => (

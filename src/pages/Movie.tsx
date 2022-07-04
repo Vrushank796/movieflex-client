@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate, Navigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { NavLink } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import '../assets/stylesheets/Movie.css';
 import star from '../assets/images/star.png';
@@ -86,7 +85,7 @@ const Movie = () => {
     };
 
     getMovieById();
-  }, [id]);
+  }, [server_url, id]);
 
   var allStars: string[] = [];
   if (movieData?.stars != null) {
@@ -138,7 +137,7 @@ const Movie = () => {
           ) : (
             ''
           )}
-          {allStars.length != 0 ? (
+          {allStars.length !== 0 ? (
             <div className='stars-list'>
               <h3>Cast</h3>
               <ul className='star-list'>

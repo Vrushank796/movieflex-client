@@ -1,9 +1,9 @@
-import "./userList.css";
-import { DataGrid } from "@material-ui/data-grid";
-import { DeleteOutline,Edit } from "@material-ui/icons";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import './userList.css';
+import { DataGrid } from '@material-ui/data-grid';
+import { DeleteOutline, Edit } from '@material-ui/icons';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 type UserProps = {
   _id: string;
@@ -11,29 +11,31 @@ type UserProps = {
   email: string;
   role: string;
   phoneNumber: any;
-}[]
+}[];
 
 const UserList = () => {
+  //const server_url = 'http://localhost:4000'; //development
+  const server_url = process.env.REACT_APP_API_URI; //production
   const navigate = useNavigate();
   const [data, setUserData] = useState<UserProps>([]);
 
   const getAllUser = async () => {
     try {
-      const url = `http://localhost:4000/get-user`;
+      const url = `${server_url}/get-user`;
       const response = await axios.get(url);
       setUserData(response.data);
     } catch (err) {
       console.log(err);
     }
   };
-  
+
   useEffect(() => {
     getAllUser();
   }, []);
 
   const handleUserDelete = async (id: any) => {
     try {
-      const url = `http://localhost:4000/delete-user/${id}`;
+      const url = `${server_url}/delete-user/${id}`;
       const response = await axios.delete(url);
       if (response.data.status) {
         alert(response.data.msg);
@@ -46,35 +48,31 @@ const UserList = () => {
       console.log(err);
     }
   };
-  
+
   const columns = [
-    { field: '_id', headerName: "#", width: 300 },
+    { field: '_id', headerName: '#', width: 300 },
     {
-      field: "name",
-      headerName: "User Name",
+      field: 'name',
+      headerName: 'User Name',
       width: 200,
       renderCell: (params: any) => {
-        return (
-          <div className="userListUser">
-            {params.row.name}
-          </div>
-        );
+        return <div className='userListUser'>{params.row.name}</div>;
       },
     },
-    { field: "email", headerName: "Email", width: 250 },
-    { field: "role", headerName: "User Role", width: 200 },
+    { field: 'email', headerName: 'Email', width: 250 },
+    { field: 'role', headerName: 'User Role', width: 200 },
     {
-      field: "action",
-      headerName: "Action",
+      field: 'action',
+      headerName: 'Action',
       width: 150,
       renderCell: (params: any) => {
         return (
           <>
-            <Link to={"/admin/user/" + params.row._id}>
-              <Edit className="userListEdit"/>
+            <Link to={'/admin/user/' + params.row._id}>
+              <Edit className='userListEdit' />
             </Link>
             <DeleteOutline
-              className="userListDelete"
+              className='userListDelete'
               onClick={() => handleUserDelete(params.row._id)}
             />
           </>
@@ -84,7 +82,7 @@ const UserList = () => {
   ];
 
   return (
-    <div className="userList">
+    <div className='userList'>
       <DataGrid
         rows={data!}
         getRowId={(row) => row._id}
@@ -94,6 +92,6 @@ const UserList = () => {
       />
     </div>
   );
-}
+};
 
 export default UserList;
