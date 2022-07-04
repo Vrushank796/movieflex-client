@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { NavLink } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import '../assets/stylesheets/Movie.css';
 import star from '../assets/images/star.png';
@@ -166,7 +167,7 @@ const Movie = () => {
           <h1>Recommended Movies</h1>
           <div className='card-grid-container'>
             {recommendMovie.slice(0, 5).map((movie) => (
-              <a href={`${movie.id}`} className='movie-links'>
+              <NavLink to={`movie/${movie.id}`} className='movie-links'>
                 <div className='card-grid-item'>
                   <Card
                     id={movie.id}
@@ -176,7 +177,7 @@ const Movie = () => {
                     key={movie.id}
                   />
                 </div>
-              </a>
+              </NavLink>
             ))}
           </div>
         </div>
