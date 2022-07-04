@@ -301,7 +301,7 @@ const PaymentFormModal = (props: PaymentModalPropTypes) => {
                 />
               </Form.Group>
               <Form.Group className='mb-3' controlId='cardNumber'>
-                <Form.Label>CVC</Form.Label>
+                <Form.Label>CVV</Form.Label>
                 <Form.Control
                   required
                   type='number'
