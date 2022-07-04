@@ -93,22 +93,22 @@ const BookTicket = () => {
     ) {
       // const checkMovieSeatsUrl = `http://localhost:4000/checkMovieSeats/${getMovieSeatsData.movieId}/${getMovieSeatsData.theatreId}/${getMovieSeatsData.showtimeId}`; //dev
       const checkMovieSeatsUrl = `${server_url}/checkMovieSeats/${getMovieSeatsData.movieId}/${getMovieSeatsData.theatreId}/${getMovieSeatsData.showtimeId}`; //prod
-      console.log(checkMovieSeatsUrl);
+      // console.log(checkMovieSeatsUrl);
       const checkMovieSeats = await axios.get(checkMovieSeatsUrl);
 
       if (checkMovieSeats.data.length !== 0) {
         setOccupiedSeats(checkMovieSeats.data[0].seatsOccupied);
-        console.log(
-          'checkMovieSeats function' + checkMovieSeatsUrl,
-          checkMovieSeats.data[0].seatsOccupied
-        );
+        // console.log(
+        //   'checkMovieSeats function' + checkMovieSeatsUrl,
+        //   checkMovieSeats.data[0].seatsOccupied
+        // );
       } else {
         setOccupiedSeats([]);
         setSelectedSeats([]);
-        console.log([]);
+        // console.log([]);
       }
     } else {
-      console.log([]);
+      // console.log([]);
     }
   };
 
@@ -152,7 +152,7 @@ const BookTicket = () => {
     id,
   ]);
 
-  console.log(movieBookingForm);
+  // console.log(movieBookingForm);
 
   //Handling Date selection in form
   const disablePastDate = () => {

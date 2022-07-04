@@ -61,14 +61,14 @@ const SearchMovies = () => {
         filterCheck.title.toLowerCase().includes(title.toLowerCase())
       ).length;
       setMoviesLength(filterMoviesLength);
-      console.log('Searching: ' + filterMoviesLength);
+      // console.log('Searching: ' + filterMoviesLength);
     } else {
       setSearchMovie('');
       const filterMoviesLength = movies.filter((filterCheck) =>
         filterCheck.title.toLowerCase().includes(title.toLowerCase())
       ).length;
       setMoviesLength(filterMoviesLength);
-      console.log('No Search:' + filterMoviesLength);
+      // console.log('No Search:' + filterMoviesLength);
     }
   };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

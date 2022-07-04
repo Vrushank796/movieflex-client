@@ -117,7 +117,7 @@ const Checkout = () => {
       seats,
       orderTotal,
     };
-    console.log(movieShowDetails);
+    // console.log(movieShowDetails);
     try {
       const postOrderDetailsUrl = `${server_url}/bookMovie`;
 
@@ -131,7 +131,7 @@ const Checkout = () => {
         }
       );
 
-      console.log(respOrder.data);
+      // console.log(respOrder.data);
       setMovieBookingStatus(respOrder.data);
     } catch (err) {
       console.log(err);

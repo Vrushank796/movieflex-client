@@ -27,14 +27,15 @@ const SearchMovies = () => {
   var token: any = localStorage.getItem('loginToken');
   var data: any = decode(token);
 
-  console.log(orderDetails);
+  // console.log(orderDetails);
   useEffect(() => {
     const getOrders = async () => {
       try {
         const response = await axios.get(
           `${server_url}/get-user-orders/${data.id}`
         );
-        console.log(response.data);
+        // console.log(response.data);
+
         setOrderDetails(response.data);
       } catch (err) {
         console.log(err);
