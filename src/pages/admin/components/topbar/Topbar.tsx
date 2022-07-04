@@ -23,7 +23,9 @@ export default function Topbar() {
     <div className='topbar'>
       <div className='topbarWrapper'>
         <div className='topLeft'>
-          <span className='logo'>MovieFlex</span>
+          <span className='logo'>
+            <a href='/'>MovieFlex</a>
+          </span>
         </div>
         <div className='topRight'>
           <img
