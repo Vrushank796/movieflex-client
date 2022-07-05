@@ -166,7 +166,7 @@ const Movie = () => {
           <h1>Recommended Movies</h1>
           <div className='card-grid-container'>
             {recommendMovie.slice(0, 5).map((movie) => (
-              <a href={`/${movie.id}`} className='movie-links'>
+              <a href={`movie/${movie.id}`} className='movie-links'>
                 <div className='card-grid-item'>
                   <Card
                     id={movie.id}
