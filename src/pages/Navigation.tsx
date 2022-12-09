@@ -82,7 +82,7 @@ const Navigation = (props: NavProps) => {
           <ul className='navbar-nav ml-auto'>
             <li className='nav-item userName'>
               Hello,
-              {' ' + user.username.toUpperCase()}
+              {' ' + user.username}
             </li>
             <li className='nav-item nav-user-btn'>
               <NavLink to='/'>
