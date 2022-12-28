@@ -18,10 +18,20 @@ const Card = (props: CardProps) => {
   if (props.genres != null) {
     allGenres = props.genres.split(',');
   }
+
+  const NoImageFound = (e: any) => {
+    e.target.src = 'https://imdb-api.com/images/original/nopicture.jpg';
+  };
+
   return (
     <div className='container-fluid main-card'>
       <div className='row main-card-row'>
-        <img className='movieImg' src={props.imgUrl} alt={props.title} />
+        <img
+          className='movieImg'
+          src={props.imgUrl}
+          alt={props.title}
+          onError={NoImageFound}
+        />
         <div className='movieDesc'>
           <div className='movieTitle'>{props.title}</div>
           <div className='genres text-muted'>

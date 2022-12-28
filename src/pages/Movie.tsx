@@ -94,6 +94,10 @@ const Movie = () => {
   // const allStars = movieData?.stars.split(',');
   // console.log(allStars);
   const movieImg = movieData?.image;
+
+  const NoImageFound = (e: any) => {
+    e.target.src = 'https://imdb-api.com/images/original/nopicture.jpg';
+  };
   return (
     <div className='container-fluid movie'>
       <div className='row movie-poster-row'>
@@ -102,6 +106,7 @@ const Movie = () => {
             <img
               src={movieImg}
               alt='Movie not found'
+              onError={NoImageFound}
               className='movie-poster'
             />
           </div>
@@ -109,7 +114,12 @@ const Movie = () => {
       </div>
       <div className='row movie-det-row'>
         <div className='col-lg-4 movie-col'>
-          <img src={movieImg} alt='Movie not found' className='movie-img' />
+          <img
+            src={movieImg}
+            alt='Movie not found'
+            className='movie-img'
+            onError={NoImageFound}
+          />
         </div>
         <div className='col-lg movie-det-col'>
           <div className='movie-title'>{movieData?.title}</div>

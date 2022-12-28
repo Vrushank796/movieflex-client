@@ -76,6 +76,9 @@ const SearchMovies = () => {
     filterMovies(e.target.value);
   };
 
+  const NoImageFound = (e: any) => {
+    e.target.src = 'https://imdb-api.com/images/original/nopicture.jpg';
+  };
   return (
     <div>
       <div className='searchDiv'>
@@ -116,7 +119,8 @@ const SearchMovies = () => {
                       <img
                         className='searchmovieImg'
                         src={movie.image}
-                        alt='Movie not found'
+                        alt={movie.title}
+                        onError={NoImageFound}
                       />
                     </td>
                   </NavLink>
