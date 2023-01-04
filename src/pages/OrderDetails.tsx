@@ -4,6 +4,8 @@ import axios from 'axios';
 import '../assets/stylesheets/OrderDetails.css';
 import emptyOrdersImg from '../assets/images/orders.webp';
 import decode from 'jwt-decode';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 type OrderDetailsProps = {
   orderId: number;
@@ -68,10 +70,11 @@ const SearchMovies = () => {
                   <tbody>
                     <tr>
                       <td className='od-tableBody .align-middle' colSpan={2}>
-                        <img
+                        <LazyLoadImage
                           src={order.movieId.image}
                           alt='Movie Not found'
                           className='od-movie-img'
+                          effect='blur'
                         />
                         {order.movieId.title}
                       </td>

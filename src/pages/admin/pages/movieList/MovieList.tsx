@@ -4,6 +4,8 @@ import { DeleteOutline, Edit } from '@material-ui/icons';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 type MovieDataProps = {
   id: string;
@@ -68,7 +70,12 @@ const MovieList = () => {
       renderCell: (params: any) => {
         return (
           <div className='movieListItem'>
-            <img className='movieListImg' src={params.row.image} alt='' />
+            <LazyLoadImage
+              className='movieListImg'
+              src={params.row.image}
+              alt=''
+              effect='blur'
+            />
             {params.row.title}
           </div>
         );

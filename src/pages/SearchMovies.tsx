@@ -4,6 +4,9 @@ import { NavLink } from 'react-router-dom';
 import '../assets/stylesheets/Search.css';
 import Pagination from '../components/Pagination';
 import star from '../assets/images/star.png';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import PlaceholderImage from '../assets/images/nopicture.png';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 type MovieTableProps = {
   id: string;
@@ -116,11 +119,13 @@ const SearchMovies = () => {
                   <NavLink to={`/movie/${movie.id}`}>
                     {/* <th scope='row'>{movie.id}</th> */}
                     <td>
-                      <img
+                      <LazyLoadImage
                         className='searchmovieImg'
                         src={movie.image}
                         alt={movie.title}
                         onError={NoImageFound}
+                        placeholderSrc={PlaceholderImage}
+                        effect='blur'
                       />
                     </td>
                   </NavLink>
@@ -132,7 +137,11 @@ const SearchMovies = () => {
 
                   <td className='tableBody'>{movie.genres}</td>
                   <td className='tableBody'>
-                    <img src={star} alt='Not available' className='star-img' />
+                    <LazyLoadImage
+                      src={star}
+                      alt='Not available'
+                      className='star-img'
+                    />
                     {movie?.imDbRating != null ? (
                       <span>{movie?.imDbRating}/10</span>
                     ) : (

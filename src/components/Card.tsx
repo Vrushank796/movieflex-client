@@ -1,4 +1,7 @@
 import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import PlaceholderImage from '../assets/images/nopicture.png';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import '../assets/stylesheets/Card.css';
 
 type CardProps = {
@@ -26,11 +29,13 @@ const Card = (props: CardProps) => {
   return (
     <div className='container-fluid main-card'>
       <div className='row main-card-row'>
-        <img
+        <LazyLoadImage
           className='movieImg'
           src={props.imgUrl}
           alt={props.title}
           onError={NoImageFound}
+          placeholderSrc={PlaceholderImage}
+          effect='blur'
         />
         <div className='movieDesc'>
           <div className='movieTitle'>{props.title}</div>

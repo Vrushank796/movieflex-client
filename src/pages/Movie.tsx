@@ -5,6 +5,9 @@ import { Button } from 'react-bootstrap';
 import '../assets/stylesheets/Movie.css';
 import star from '../assets/images/star.png';
 import Card from '../components/Card';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+import PlaceholderImage from '../assets/images/nopicture.png';
 
 // type MovieDetProps = {};
 
@@ -103,7 +106,7 @@ const Movie = () => {
       <div className='row movie-poster-row'>
         <div className='col movie-poster-col'>
           <div className='movie-det-section'>
-            <img
+            <LazyLoadImage
               src={movieImg}
               alt='Movie not found'
               onError={NoImageFound}
@@ -114,11 +117,13 @@ const Movie = () => {
       </div>
       <div className='row movie-det-row'>
         <div className='col-lg-4 movie-col'>
-          <img
+          <LazyLoadImage
             src={movieImg}
             alt='Movie not found'
             className='movie-img'
             onError={NoImageFound}
+            placeholderSrc={PlaceholderImage}
+            effect='blur'
           />
         </div>
         <div className='col-lg movie-det-col'>
@@ -140,7 +145,11 @@ const Movie = () => {
             <div className='imdb-ratings'>
               <h3>IMDB Ratings</h3>
               <span className='imdb-rating'>
-                <img src={star} alt='Not available' className='star-img' />
+                <LazyLoadImage
+                  src={star}
+                  alt='Not available'
+                  className='star-img'
+                />
                 {movieData?.imDbRating}/10
               </span>
             </div>

@@ -1,6 +1,8 @@
 import './tickets.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 type OrdersProps = {
   orderId: number;
@@ -52,7 +54,12 @@ const Tickets = () => {
               <span className='widgetLgName'>{order.userId?.name}</span>
             </td>
             <td className='widgetLgName'>
-              <img src={order.movieId.image} alt='' className='widgetLgImg' />
+              <LazyLoadImage
+                src={order.movieId.image}
+                alt=''
+                className='widgetLgImg'
+                effect='blur'
+              />
               {order.movieId.title}
             </td>
             <td className='widgetLgDate'>
