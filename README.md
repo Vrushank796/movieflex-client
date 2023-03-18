@@ -7,3 +7,5 @@
 - Users can review the theatre and movie show info on the checkout page and add the dummy payment info to finally book the movie tickets. 
 - A user would get the movie ticket details in their mail. 
 - On my orders page, user can check their booked tickets. Using the admin panel, the admin can handle the database for creating and modifying the movie, and user details, and view the ticket details.
+
+Demo Website Link: https://movieflexcanada.netlify.app/
